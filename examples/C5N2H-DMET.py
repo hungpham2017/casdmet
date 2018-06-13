@@ -64,8 +64,8 @@ for distance in np.arange(1.2, 1.25, 0.1):
 		theDMET.CC_E_TYPE  = 'CASCI'				
 		the_energy = theDMET.doselfconsistent()		
 		
-		'''X1 = np.linalg.inv(theDMET.ao2loc)  # since C~ = X.C (X is the inverse of transformation matrix)
-		X2 = np.linalg.inv(theDMET.loc2dmet)
+		'''X1 = theDMET.ao2loc
+		X2 = theDMET.loc2dmet
 		#PRINT RHF in embedding space
 		for mo in range(10,40):
 		    mo_coeff = reduce(np.dot,(X1,X2[:,:40], theDMET.MOmf))[:,mo].reshape(mol.nao_nr())

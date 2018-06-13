@@ -61,14 +61,15 @@ for distance in np.arange(1.8, 1.85, 0.1): # Ni---H2O distance
 		theDMET.CASlist = [12,13,14,15,17,18,19,20]	
 		the_energy = theDMET.doselfconsistent()		
 		
-		X1 = np.linalg.inv(theDMET.ao2loc)  # since C~ = X.C (X is the inverse of transformation matrix)
 		#PRINT LOCALIZED ORBITALS
-		'''for mo in range(0,48):
+		
+		'''X1 = theDMET.ao2loc
+		X2 = theDMET.loc2dmet		
+		for mo in range(0,48):
 		    mo_coeff = X1[:,mo].reshape(mol.nao_nr())
 		    name = 'MO_loc_' + str(mo) + '.cube'
 		    mocube.mo(mol, name, mo_coeff, nx=60, ny=60, nz=60)	
-
-		X2 = np.linalg.inv(theDMET.loc2dmet)			
+		
 		#PRINT DMET ORBITALS
 		for mo in range(0,48):
 		    mo_coeff = np.dot(X1,X2)[:,mo].reshape(mol.nao_nr())
